@@ -35,3 +35,13 @@ def outputs_manager_detail_and_change(request, pk):
          return Response(serializer.data)
       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def outputs_by_month(request, month):
+   try:
+      output = Output.objects.filter(date_time__month=month)
+   except output.DoesNotExist:
+      return Response(status=status.HTTP_404_NOT_FOUND)
+   
+   serializer = OutputSerializer(output, many=True)
+   return Response(serializer.data)
+
