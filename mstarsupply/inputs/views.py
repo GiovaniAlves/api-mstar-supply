@@ -34,3 +34,13 @@ def inputs_manager_detail_and_change(request, pk):
          serializer.save()
          return Response(serializer.data)
       return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def inputs_by_month(request, month):
+   try:
+      input = Input.objects.filter(date_time__month=month)
+   except input.DoesNotExist:
+      return Response(status=status.HTTP_404_NOT_FOUND)
+   
+   serializer = InputSerializer(input, many=True)
+   return Response(serializer.data)
