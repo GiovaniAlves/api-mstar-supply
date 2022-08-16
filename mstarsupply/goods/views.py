@@ -16,7 +16,7 @@ def goods_manager(request):
       if serializer.is_valid():
          serializer.save()
          return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
-      return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+      return Response(serializer.errors, status=422)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def goods_manager_detail_change_and_delete(request, pk):

@@ -7,7 +7,7 @@ from rest_framework import serializers
 class OutputSerializer(serializers.ModelSerializer):
    class Meta:
       model = Output
-      fields = ['id', 'qtd_goods', 'date_time', 'local', 'merchandise', 'merchandise_object']
+      fields = ['id', 'qtd_goods', 'date_time', 'local', 'type', 'merchandise', 'merchandise_object']
    
    merchandise = serializers.StringRelatedField(
       read_only=True,
